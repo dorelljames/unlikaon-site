@@ -2,7 +2,7 @@ require('dotenv').config()
 const strapiPluginOptions = {
   resolve: `gatsby-source-strapi`,
   options: {
-    apiURL: `http://localhost:1337`,
+    apiURL: process.env.API_URL ? process.env.API_URL : 'http://localhost/',
     contentTypes: [
       // List of the Content Types you want to be able to request from Gatsby.
       `business`,

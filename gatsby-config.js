@@ -11,6 +11,21 @@ const strapiPluginOptions = {
   },
 }
 
+const gaPluginOptions = {
+  resolve: `gatsby-plugin-google-analytics`,
+  options: {
+    trackingId: process.env.GA_TRACK_ID || '',
+    // Puts tracking script in the head instead of the body
+    head: false,
+    // Setting this parameter is optional
+    anonymize: true,
+    // Setting this parameter is also optional
+    respectDNT: true,
+    // Avoids sending pageview hits from custom paths
+    exclude: [],
+  },
+}
+
 /**
  * GraphQL query we upload to Algolia
  */
@@ -49,6 +64,23 @@ const queries = [
   },
 ]
 
+const algoliaPluginOptions = {
+  resolve: `gatsby-plugin-algolia`,
+  options: {
+    appId: process.env.ALGOLIA_APP_ID
+      ? process.env.ALGOLIA_APP_ID
+      : 'DAUF2TCV69',
+    apiKey: process.env.ALGOLIA_ADMIN_API_KEY
+      ? process.env.ALGOLIA_ADMIN_API_KEY
+      : '97088904f2f0400b5ae9d7b2c0d7b1b4',
+    indexName: process.env.ALGOLIA_INDEX_NAME
+      ? process.env.ALGOLIA_INDEX_NAME
+      : 'businesses',
+    queries,
+    chunkSize: 10000, // default: 1000
+  },
+}
+
 module.exports = {
   siteMetadata: {
     title: 'Unli Kaon - Cebu Edition',
@@ -66,21 +98,7 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     strapiPluginOptions,
-    {
-      resolve: `gatsby-plugin-algolia`,
-      options: {
-        appId: process.env.ALGOLIA_APP_ID
-          ? process.env.ALGOLIA_APP_ID
-          : 'DAUF2TCV69',
-        apiKey: process.env.ALGOLIA_ADMIN_API_KEY
-          ? process.env.ALGOLIA_ADMIN_API_KEY
-          : '97088904f2f0400b5ae9d7b2c0d7b1b4',
-        indexName: process.env.ALGOLIA_INDEX_NAME
-          ? process.env.ALGOLIA_INDEX_NAME
-          : 'businesses',
-        queries,
-        chunkSize: 10000, // default: 1000
-      },
-    },
+    gaPluginOptions,
+    algoliaPluginOptions,
   ],
 }

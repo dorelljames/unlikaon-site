@@ -9,7 +9,7 @@ import {
 
 const HitComponent = ({ hit, data }) => (
 	<div>
-		<img src={data.apiUrl + hit.banner.url} />
+		<img src={hit.banner.url} />
 		<h3>{hit.name}</h3>
 		<small>Addr: {hit.address}</small>
 	</div>

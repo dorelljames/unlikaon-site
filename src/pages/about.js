@@ -3,7 +3,7 @@ import Link from 'gatsby-link'
 
 const AboutPage = ({ data }) => (
   <ul>
-    {data.allStrapiBusiness.edges.map(document => (
+    {data.allStrapiBusinesses.edges.map(document => (
       <li key={document.node.id}>
         <h2>
           <Link to={`/${document.node.id}`}>{document.node.name}</Link>

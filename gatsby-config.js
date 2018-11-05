@@ -5,8 +5,8 @@ const strapiPluginOptions = {
     apiURL: process.env.API_URL ? process.env.API_URL : 'http://localhost/',
     contentTypes: [
       // List of the Content Types you want to be able to request from Gatsby.
-      `business`,
-      `user`,
+      `businesses`,
+      `users`,
     ],
   },
 }

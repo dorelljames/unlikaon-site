@@ -31,7 +31,7 @@ const gaPluginOptions = {
  */
 const query = `
 {
-  allStrapiBusiness {
+  allStrapiBusinesses {
     edges {
       node {
         objectID: id
@@ -57,7 +57,7 @@ const queries = [
   {
     query,
     transformer: ({ data }) =>
-      data.allStrapiBusiness.edges.map(({ node }) => node),
+      data.allStrapiBusinesses.edges.map(({ node }) => node),
     indexName: process.env.ALGOLIA_INDEX_NAME
       ? process.env.ALGOLIA_INDEX_NAME
       : 'businesses',

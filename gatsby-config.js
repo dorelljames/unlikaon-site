@@ -5,8 +5,8 @@ const strapiPluginOptions = {
     apiURL: process.env.API_URL ? process.env.API_URL : 'http://localhost/',
     contentTypes: [
       // List of the Content Types you want to be able to request from Gatsby.
-      `business`,
-      `user`,
+      `businesses`,
+      `users`,
     ],
   },
 }
@@ -31,7 +31,7 @@ const gaPluginOptions = {
  */
 const query = `
 {
-  allStrapiBusiness {
+  allStrapiBusinesses {
     edges {
       node {
         objectID: id
@@ -57,7 +57,7 @@ const queries = [
   {
     query,
     transformer: ({ data }) =>
-      data.allStrapiBusiness.edges.map(({ node }) => node),
+      data.allStrapiBusinesses.edges.map(({ node }) => node),
     indexName: process.env.ALGOLIA_INDEX_NAME
       ? process.env.ALGOLIA_INDEX_NAME
       : 'businesses',

@@ -1,4 +1,6 @@
-require('dotenv').config()
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 const strapiPluginOptions = {
   resolve: `gatsby-source-strapi`,
@@ -58,12 +60,14 @@ const queries = [
   {
     query,
     transformer: ({ data }) =>
-      data.allStrapiBusiness.edges.map(({ node }) => node),
+      data.allStrapiBusinesses.edges.map(({ node }) => node),
     indexName: process.env.ALGOLIA_INDEX_NAME
       ? process.env.ALGOLIA_INDEX_NAME
       : 'businesses',
   },
 ]
+
+console.log(queries)
 
 const algoliaPluginOptions = {
   resolve: `gatsby-plugin-algolia`,
@@ -81,6 +85,8 @@ const algoliaPluginOptions = {
     chunkSize: 10000, // default: 1000
   },
 }
+
+console.log(algoliaPluginOptions)
 
 module.exports = {
   siteMetadata: {
@@ -123,7 +129,7 @@ module.exports = {
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
     strapiPluginOptions,
-    gaPluginOptions,
-    algoliaPluginOptions,
+    // gaPluginOptions,
+    // algoliaPluginOptions,
   ],
 }

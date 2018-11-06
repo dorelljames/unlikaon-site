@@ -1,17 +1,20 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import { Link, graphql } from 'gatsby'
+import Layout from '../components/layout'
 
 const AboutPage = ({ data }) => (
-  <ul>
-    {data.allStrapiBusinesses.edges.map(document => (
-      <li key={document.node.id}>
-        <h2>
-          <Link to={`/${document.node.id}`}>{document.node.name}</Link>
-        </h2>
-        <p>{document.node.address}</p>
-      </li>
-    ))}
-  </ul>
+  <Layout>
+    <ul>
+      {data.allStrapiBusinesses.edges.map(document => (
+        <li key={document.node.id}>
+          <h2>
+            <Link to={`/${document.node.id}`}>{document.node.name}</Link>
+          </h2>
+          <p>{document.node.address}</p>
+        </li>
+      ))}
+    </ul>
+  </Layout>
 )
 
 export default AboutPage
